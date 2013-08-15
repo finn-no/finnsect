@@ -1,0 +1,16 @@
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <a class="brand" href="/">finnsect</a>
+    <ul class="nav">
+      <li class="active"><a href="/resources">resources</a></li>
+    </ul>
+  </div>
+</div>
+<h1>
+	{{#title }}
+		{{ title }}
+	{{/title}}
+	{{^title}}
+		finnsect
+	{{/title}}	
+</h1>

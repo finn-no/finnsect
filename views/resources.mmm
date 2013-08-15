@@ -1,0 +1,22 @@
+<table class="table table-bordered table-striped">
+	<thead>
+		<th>la</th>
+		<th>la</th>
+	<thead>	
+	<tr>
+		<td>
+			{{ msg }}
+		</td>
+		<td>
+			{{ msg }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{{ msg }}
+		</td>
+		<td>
+			{{ msg }}
+		</td>
+	</tr>
+</table>
