@@ -19,6 +19,7 @@ app.configure(function(){
   app.use(express.cookieParser('lalashere'));
   app.use(express.session());
   app.use(app.router);
+  app.use(require('less-middleware')({src: __dirname + '/public', compress: true}));
   app.use(express.static(path.join(__dirname, 'public')));
 });
 

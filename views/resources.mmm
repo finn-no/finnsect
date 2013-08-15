@@ -1,22 +1,28 @@
 <table class="table table-bordered table-striped">
 	<thead>
-		<th>la</th>
-		<th>la</th>
+		<th>path</th>
+		<th>methods</th>
+		<th>headers</th>
 	<thead>	
+	{{# resources }}
 	<tr>
 		<td>
-			{{ msg }}
+			{{ path }}
 		</td>
 		<td>
-			{{ msg }}
+			<ul>
+				{{# methods }}
+				<li>{{.}}</li>
+				{{/ methods }}
+			</ul>
+		</td>
+		<td>
+			<ul>
+				{{# headers }}
+				<li>{{ name }}: {{ value }}</li>
+				{{/ headers }}
+			</ul>
 		</td>
 	</tr>
-	<tr>
-		<td>
-			{{ msg }}
-		</td>
-		<td>
-			{{ msg }}
-		</td>
-	</tr>
+	{{/ resources }}
 </table>
