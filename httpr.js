@@ -12,6 +12,7 @@ exports.resources = function(rs, callback) {
 			}, 
 			function(response) {
 				r.actualStatusCode = response.statusCode;
+				r.actualResponseHeaders = response.headers;
 				len--;
 				if(!len) {
 					callback(rs);

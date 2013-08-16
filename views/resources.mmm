@@ -3,13 +3,18 @@
 		<th>host</th>
 		<th>path</th>
 		<th>method</th>
-		<th>request headers</th>
-		<th>response headers</th>
-		<th>expected status code</th>
-		<th>actual status code</th> 
+		<th>req headers</th>
+		<th>exp resp headers</th>
+		<th>act resp headers</th>
+		<th>exp status code</th>
+		<th>act status code</th> 
+		<th>status</th>
 	</thead>	
 	{{# resources }}
-	<tr {{# ok }}class="success"{{/ ok }}{{^ ok }}class="error"{{/ ok }}>
+	<tr 
+		{{# status.partial }}class="warning"{{/ status.partial }}
+		{{# status.success }}class="success"{{/ status.success }}
+		{{^ status.success }}class="error"{{/ status.success }}>
 		<td>
 			{{ host }}
 		</td>
@@ -33,11 +38,31 @@
 				{{/ responseHeaders }}
 			</ul>
 		</td>
+		<td>
+			<i class="icon-list"></i> <a data-toggle="collapse" data-target="#showHeaders{{ id }}">
+  			show headers
+			</a>
+			<div id="showHeaders{{ id }}" class="collapse">
+				<ul class="small">
+					{{# actualResponseHeaders }}
+					<li>{{ name }}: {{ value }}</li>
+					{{/ actualResponseHeaders }}
+				</ul>
+			</div>
+		</td>
 		<td class="text-center">
 			{{ statusCode }}
 		</td>
 		<td class="text-center">
 			{{ actualStatusCode }}
+		</td>
+		<td>
+			<span class="label {{# status.statusCode }}label-inverse{{/status.statusCode }}">
+				status code
+			</span>
+			<span class="label {{# status.headers }}label-inverse{{/status.headers }}">
+				headers
+			</span>
 		</td>
 	</tr>
 	{{/ resources }}
