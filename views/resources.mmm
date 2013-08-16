@@ -25,27 +25,37 @@
 			{{ method }}
 		</td>
 		<td>
-			<ul>
-				{{# requestHeaders }}
-				<li>{{ name }}: {{ value }}</li>
-				{{/ requestHeaders }}
-			</ul>
-		</td>
-		<td>
-			<ul>
-				{{# responseHeaders }}
-				<li>{{ name }}: {{ value }}</li>
-				{{/ responseHeaders }}
-			</ul>
-		</td>
-		<td>
-			<i class="icon-list"></i> <a data-toggle="collapse" data-target="#showHeaders{{ id }}">
-  			show headers
+			<i class="icon-list"></i> <a data-toggle="collapse" data-target="#showRequestHeaders{{ id }}">
+  			expand
 			</a>
-			<div id="showHeaders{{ id }}" class="collapse">
+			<div id="showRequestHeaders{{ id }}" class="collapse">
+				<ul class="small">
+					{{# requestHeaders }}
+					<li><small>{{ name }}: {{ value }}</small></li>
+					{{/ requestHeaders }}
+				</ul>
+			</div>
+		</td>
+		<td>
+			<i class="icon-list"></i> <a data-toggle="collapse" data-target="#showExpectedHeaders{{ id }}">
+  			expand
+			</a>
+			<div id="showExpectedHeaders{{ id }}" class="collapse">
+				<ul class="small">
+					{{# responseHeaders }}
+					<li><small>{{ name }}: {{ value }}</small></li>
+					{{/ responseHeaders }}
+				</ul>
+			</div>
+		</td>
+		<td>
+			<i class="icon-list"></i> <a data-toggle="collapse" data-target="#showActualHeaders{{ id }}">
+  			expand
+			</a>
+			<div id="showActualHeaders{{ id }}" class="collapse">
 				<ul class="small">
 					{{# actualResponseHeaders }}
-					<li>{{ name }}: {{ value }}</li>
+					<li><small>{{ name }}: {{ value }}</small></li>
 					{{/ actualResponseHeaders }}
 				</ul>
 			</div>
