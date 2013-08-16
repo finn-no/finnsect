@@ -6,7 +6,10 @@ exports.resources = function(req, res) {
 		httpr.resources(rs, function(data) {
 			res.render('resources', {
 				title: 'resources', 
-				resources: data
+				resources: data.map(function(r) {
+					r.ok = r.statusCode == r.actualStatusCode
+					return r;
+				})
 			});
 		});
 	});

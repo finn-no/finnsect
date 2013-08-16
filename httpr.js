@@ -14,7 +14,6 @@ exports.resources = function(rs, callback) {
 				r.actualStatusCode = response.statusCode;
 				len--;
 				if(!len) {
-					console.log(rs);
 					callback(rs);
 				}
 			}
