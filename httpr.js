@@ -1,23 +1,27 @@
-var http = request('http');
+var http = require('http');
 
-function request(methodf, options, callback) {
-	methodf(options, function(resp) {
-		callback(resp.statusCode);
-	}); 
-};
-
-var get = function(options, callback) {
-	request(http.get, options, callback);
-};
-
-var post = function(options, callback) {
-	request(http.post, options, callback);
-};
-
-var put = function(options, callback) {
-	request(http.put, options, callback);
-};
-
-var head = function(options, callback) {
-	request(http.head, options, callback);
+exports.resources = function(rs, callback) {
+	var len = rs.length;
+	rs.forEach(function(r) {
+		var req = http.request(
+			{
+			  host: r.host,
+			  port: 80,
+			  path: r.path,
+			  method: r.method
+			}, 
+			function(response) {
+				r.actualStatusCode = response.statusCode;
+				len--;
+				if(!len) {
+					console.log(rs);
+					callback(rs);
+				}
+			}
+		);
+		req.on('error', function(e) {
+			console.log('[http] problem accessing ' + r.host + r.path);
+		});
+		req.end();
+	});
 };

@@ -1,13 +1,18 @@
-<table class="table table-bordered table-striped">
+<table class="table table-striped">
 	<thead>
+		<th>host</th>
 		<th>path</th>
 		<th>method</th>
 		<th>request headers</th>
-		<th>status code</th>
-		<th>response headers</th> 
+		<th>response headers</th>
+		<th>expected status code</th>
+		<th>actual status code</th> 
 	<thead>	
 	{{# resources }}
 	<tr>
+		<td>
+			{{ host }}
+		</td>
 		<td>
 			{{ path }}
 		</td>
@@ -22,14 +27,17 @@
 			</ul>
 		</td>
 		<td>
-			{{ statusCode }}
-		</td>
-		<td>
 			<ul>
 				{{# responseHeaders }}
 				<li>{{ name }}: {{ value }}</li>
 				{{/ responseHeaders }}
 			</ul>
+		</td>
+		<td class="text-center">
+			{{ statusCode }}
+		</td>
+		<td class="text-center">
+			{{ actualStatusCode }}
 		</td>
 	</tr>
 	{{/ resources }}
