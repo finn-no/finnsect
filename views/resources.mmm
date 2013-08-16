@@ -1,8 +1,10 @@
 <table class="table table-bordered table-striped">
 	<thead>
 		<th>path</th>
-		<th>methods</th>
-		<th>headers</th>
+		<th>method</th>
+		<th>request headers</th>
+		<th>status code</th>
+		<th>response headers</th> 
 	<thead>	
 	{{# resources }}
 	<tr>
@@ -10,17 +12,23 @@
 			{{ path }}
 		</td>
 		<td>
-			<ul>
-				{{# methods }}
-				<li>{{.}}</li>
-				{{/ methods }}
-			</ul>
+			{{ method }}
 		</td>
 		<td>
 			<ul>
-				{{# headers }}
+				{{# requestHeaders }}
 				<li>{{ name }}: {{ value }}</li>
-				{{/ headers }}
+				{{/ requestHeaders }}
+			</ul>
+		</td>
+		<td>
+			{{ statusCode }}
+		</td>
+		<td>
+			<ul>
+				{{# responseHeaders }}
+				<li>{{ name }}: {{ value }}</li>
+				{{/ responseHeaders }}
 			</ul>
 		</td>
 	</tr>
