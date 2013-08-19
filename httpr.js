@@ -23,6 +23,10 @@ exports.resources = function(rs, callback) {
     );
     req.on('error', function(e) {
       console.log('[http] problem accessing ' + r.host + r.path);
+      len--;
+      if(!len) {
+        callback(rs);
+      }
     });
     req.on('data', function() { /* /dev/null */ });
     req.end();

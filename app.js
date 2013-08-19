@@ -29,7 +29,8 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/resources', resources.resources);
+app.get('/resources', resources.get);
+app.post('/resources', resources.post);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
