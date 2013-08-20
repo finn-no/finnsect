@@ -28,9 +28,11 @@
         {{ method }}
       </td>
       <td class="hidden-phone">
-        <i class="icon-list"></i> <a data-toggle="collapse" data-target="#showRequestHeaders{{ id }}">
-          expand
-        </a>
+        <div class="text-center">
+          <i class="icon-list"></i> <a data-toggle="collapse" data-target="#showRequestHeaders{{ id }}">
+            expand
+          </a>
+        </div>
         <div id="showRequestHeaders{{ id }}" class="collapse">
           <ul class="small">
             {{# requestHeaders }}
@@ -40,9 +42,11 @@
         </div>
       </td>
       <td class="hidden-phone">
-        <i class="icon-list"></i> <a data-toggle="collapse" data-target="#showExpectedHeaders{{ id }}">
-          expand
-        </a>
+        <div class="text-center">
+          <i class="icon-list"></i> <a data-toggle="collapse" data-target="#showExpectedHeaders{{ id }}">
+            expand
+          </a>
+        </div>
         <div id="showExpectedHeaders{{ id }}" class="collapse">
           <ul class="small">
             {{# responseHeaders }}
@@ -54,13 +58,15 @@
       <td class="text-center">
         {{ statusCode }}
       </td>
-      <td class="text-center
+      <td class="
         {{# status.headers }}success{{/ status.headers }}
         {{^ status.headers }}error{{/ status.headers }}">
         {{# actualStatusCode }}
-        <i class="icon-list"></i> <a class="hidden-phone" data-toggle="collapse" data-target="#showActualHeaders{{ id }}">
+        <div class="text-center">
+          <i class="icon-list"></i> <a class="hidden-phone" data-toggle="collapse" data-target="#showActualHeaders{{ id }}">
           expand
-        </a>
+          </a>
+        </div>
         <div id="showActualHeaders{{ id }}" class="collapse hidden-phone">
           <ul class="small">
             {{# actualResponseHeaders }}
@@ -70,10 +76,12 @@
         </div>
         {{/ actualStatusCode}}
         {{^ actualStatusCode}}
-          <i class="icon-ban-circle"/>
+        <div class="text-center">
+          <i class="icon-ban-circle"></i>
+        </div>
         {{/ actualStatusCode}}
       </td>
-      <td class="text-center 
+      <td class="
         {{# status.statusCode }}success{{/ status.statusCode }}
         {{^ status.statusCode }}error{{/ status.statusCode }}">
         {{# actualStatusCode  }}
@@ -98,9 +106,9 @@
       <tr class="form-row hidden-phone">
         <td/>
         <form name="addResource" action="resources" method="post">
-        <td><input name="inputHost" type="text" class="input-small"></td>
-        <td><input name="inputPath" type="text" class="input-small"></td>
-        <td><select name="selectMethod" class="input-small">
+        <td><input name="inputHost" type="text" class="tdfield"></td>
+        <td><input name="inputPath" type="text" class="tdfield"></td>
+        <td><select name="selectMethod" class="tdfield">
           <option>get</option>
           <option>post</option>
           <option>put</option>
@@ -108,9 +116,9 @@
           <option>head</option>
           <option>option</option>
         </select></td>
-        <td><textarea name="textRequestHeaders" rows="1" class="input-small"></textarea></td>
-        <td><textarea name="textResponseHeaders" rows="1" class="input-small"></textarea></td>
-        <td><input name="inputStatusCode" type="text" class="input-small"></td>
+        <td><textarea name="textRequestHeaders" rows="1" class="tdfield"></textarea></td>
+        <td><textarea name="textResponseHeaders" rows="1" class="tdfield"></textarea></td>
+        <td><input name="inputStatusCode" type="text" class="tdfield"></td>
         <td/>
         <td colspan="2" class="text-right"><button class="btn">add</button></td>
         </form>

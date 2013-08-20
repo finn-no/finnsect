@@ -4,13 +4,10 @@ var httpr = require('../httpr');
 exports.get = function(req, res) {
   db.getResources(function(rs) { 
     httpr.resources(rs, function(data) {
-      var id = 0;
       res.render('resources', {
         title: 'resources', 
         resources: data.map(function(r) {
-          r.id = id ++;
           r.status = {};
-          console.log(r);
           r.status.statusCode = r.statusCode == r.actualStatusCode;
           r.status.headers    = r.status.statusCode && isSubset(r.responseHeaders, r.actualResponseHeaders)
           r.status.partial    = !r.status.headers ^ !r.status.statusCode;

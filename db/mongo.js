@@ -11,6 +11,7 @@ exports.getResources = function(callback) {
     } else {
       var resources = cursor.map(function(c) {
         return {
+          "id": c._id,
           "host": c.host,
           "path": c.path,
           "method": c.method,
