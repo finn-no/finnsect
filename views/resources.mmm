@@ -4,114 +4,116 @@
     <th>host</th>
     <th>path</th>
     <th>method</th>
-    <th>req headers</th>
-    <th>exp resp headers</th>
+    <th class="hidden-phone">req headers</th>
+    <th class="hidden-phone">exp resp headers</th>
     <th>exp status code</th>
-    <th>act resp headers</th>
-    <th>act status code</th> 
-    <th/>
+    <th>resp headers</th>
+    <th>status code</th> 
+    <th class="hidden-phone"/>
   </thead>  
   {{# resources }}
-  <tr>
-    <td  
-      {{# status.partial }}class="warning"{{/ status.partial }}
-      {{# status.success }}class="success"{{/ status.success }}
-      {{^ status.success }}class="error"{{/ status.success }}/>
-    <td>
-      {{ host }}
-    </td>
-    <td>
-      {{ path }}
-    </td>
-    <td>
-      {{ method }}
-    </td>
-    <td>
-      <i class="icon-list"></i> <a data-toggle="collapse" data-target="#showRequestHeaders{{ id }}">
-        expand
-      </a>
-      <div id="showRequestHeaders{{ id }}" class="collapse">
-        <ul class="small">
-          {{# requestHeaders }}
-          <li><small>{{ name }}: {{ value }}</small></li>
-          {{/ requestHeaders }}
-        </ul>
-      </div>
-    </td>
-    <td>
-      <i class="icon-list"></i> <a data-toggle="collapse" data-target="#showExpectedHeaders{{ id }}">
-        expand
-      </a>
-      <div id="showExpectedHeaders{{ id }}" class="collapse">
-        <ul class="small">
-          {{# responseHeaders }}
-          <li><small>{{ name }}: {{ value }}</small></li>
-          {{/ responseHeaders }}
-        </ul>
-      </div>
-    </td>
-    <td class="text-center">
-      {{ statusCode }}
-    </td>
-    <td class="text-center 
-      {{# status.headers }}success{{/ status.headers }}
-      {{^ status.headers }}error{{/ status.headers }}">
-      {{# actualStatusCode }}
-      <i class="icon-list"></i> <a data-toggle="collapse" data-target="#showActualHeaders{{ id }}">
-        expand
-      </a>
-      <div id="showActualHeaders{{ id }}" class="collapse">
-        <ul class="small">
-          {{# actualResponseHeaders }}
-          <li><small>{{ name }}: {{ value }}</small></li>
-          {{/ actualResponseHeaders }}
-        </ul>
-      </div>
-      {{/ actualStatusCode}}
-      {{^ actualStatusCode}}
+  <tbody>
+    <tr>
+      <td  
+        {{# status.partial }}class="warning"{{/ status.partial }}
+        {{# status.success }}class="success"{{/ status.success }}
+        {{^ status.success }}class="error"{{/ status.success }}/>
+      <td>
+        {{ host }}
+      </td>
+      <td>
+        {{ path }}
+      </td>
+      <td>
+        {{ method }}
+      </td>
+      <td class="hidden-phone">
+        <i class="icon-list"></i> <a data-toggle="collapse" data-target="#showRequestHeaders{{ id }}">
+          expand
+        </a>
+        <div id="showRequestHeaders{{ id }}" class="collapse">
+          <ul class="small">
+            {{# requestHeaders }}
+            <li><small>{{ name }}: {{ value }}</small></li>
+            {{/ requestHeaders }}
+          </ul>
+        </div>
+      </td>
+      <td class="hidden-phone">
+        <i class="icon-list"></i> <a data-toggle="collapse" data-target="#showExpectedHeaders{{ id }}">
+          expand
+        </a>
+        <div id="showExpectedHeaders{{ id }}" class="collapse">
+          <ul class="small">
+            {{# responseHeaders }}
+            <li><small>{{ name }}: {{ value }}</small></li>
+            {{/ responseHeaders }}
+          </ul>
+        </div>
+      </td>
+      <td class="text-center">
+        {{ statusCode }}
+      </td>
+      <td class="text-center
+        {{# status.headers }}success{{/ status.headers }}
+        {{^ status.headers }}error{{/ status.headers }}">
+        {{# actualStatusCode }}
+        <i class="icon-list"></i> <a class="hidden-phone" data-toggle="collapse" data-target="#showActualHeaders{{ id }}">
+          expand
+        </a>
+        <div id="showActualHeaders{{ id }}" class="collapse hidden-phone">
+          <ul class="small">
+            {{# actualResponseHeaders }}
+            <li><small>{{ name }}: {{ value }}</small></li>
+            {{/ actualResponseHeaders }}
+          </ul>
+        </div>
+        {{/ actualStatusCode}}
+        {{^ actualStatusCode}}
+          <i class="icon-ban-circle"/>
+        {{/ actualStatusCode}}
+      </td>
+      <td class="text-center 
+        {{# status.statusCode }}success{{/ status.statusCode }}
+        {{^ status.statusCode }}error{{/ status.statusCode }}">
+        {{# actualStatusCode  }}
+        <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">{{ actualStatusCode }}</a>
+        {{/ actualStatusCode }}
+        {{^ actualStatusCode }}
         <i class="icon-ban-circle"/>
-      {{/ actualStatusCode}}
-    </td>
-    <td class="text-center 
-      {{# status.statusCode }}success{{/ status.statusCode }}
-      {{^ status.statusCode }}error{{/ status.statusCode }}">
-      {{# actualStatusCode  }}
-      <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">{{ actualStatusCode }}</a>
-      {{/ actualStatusCode }}
-      {{^ actualStatusCode }}
-      <i class="icon-ban-circle"/>
-      {{/ actualStatusCode }}
-    </td>
-    <td class="text-right">
-      <form>
-        <input type="hidden" name="host" value="{{ host }}">
-        <input type="hidden" name="path" value="{{ path }}">
-        <input type="hidden" name="method" value="{{ method }}">
-        <input type="hidden" name="requestHeaders" value="{{ requestHeaders }}">
-        <input type="hidden" name="responseHeaders" value="{{ responseHeaders }}">
-        <a href="#"><i class="icon-trash"></i></a>    
-      </form>
-    </td>
-  </tr>
-  {{/ resources }}
-    <tr class="form-row">
-      <td/>
-      <form name="addResource" action="resources" method="post">
-      <td><input name="inputHost" type="text" class="input-small"></td>
-      <td><input name="inputPath" type="text" class="input-small"></td>
-      <td><select name="selectMethod" class="input-small">
-        <option>get</option>
-        <option>post</option>
-        <option>put</option>
-        <option>delete</option>
-        <option>head</option>
-        <option>option</option>
-      </select></td>
-      <td><textarea name="textRequestHeaders" rows="1" class="input-small"></textarea></td>
-      <td><textarea name="textResponseHeaders" rows="1" class="input-small"></textarea></td>
-      <td><input name="inputStatusCode" type="text" class="input-small"></td>
-      <td/>
-      <td colspan="2" class="text-right"><button class="btn">add</button></td>
-      </form>
+        {{/ actualStatusCode }}
+      </td>
+      <td class="text-right hidden-phone">
+        <form>
+          <input type="hidden" name="host" value="{{ host }}">
+          <input type="hidden" name="path" value="{{ path }}">
+          <input type="hidden" name="method" value="{{ method }}">
+          <input type="hidden" name="requestHeaders" value="{{ requestHeaders }}">
+          <input type="hidden" name="responseHeaders" value="{{ responseHeaders }}">
+          <a href="#"><i class="icon-trash"></i></a>    
+        </form>
+      </td>
     </tr>
+    {{/ resources }}
+      <tr class="form-row hidden-phone">
+        <td/>
+        <form name="addResource" action="resources" method="post">
+        <td><input name="inputHost" type="text" class="input-small"></td>
+        <td><input name="inputPath" type="text" class="input-small"></td>
+        <td><select name="selectMethod" class="input-small">
+          <option>get</option>
+          <option>post</option>
+          <option>put</option>
+          <option>delete</option>
+          <option>head</option>
+          <option>option</option>
+        </select></td>
+        <td><textarea name="textRequestHeaders" rows="1" class="input-small"></textarea></td>
+        <td><textarea name="textResponseHeaders" rows="1" class="input-small"></textarea></td>
+        <td><input name="inputStatusCode" type="text" class="input-small"></td>
+        <td/>
+        <td colspan="2" class="text-right"><button class="btn">add</button></td>
+        </form>
+      </tr>
+    <tbody>
 </table>
